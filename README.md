@@ -1,19 +1,19 @@
 Jack of All Planes (JoAP) is a mod for Planescape: Torment - Enhanced Edition. 
 
-This mod has basically one feature: it reworks The Nameless One's progression to work as a multiclass Fighter/Mage/Thief. He can wield any weapon, use thief skills, and cast arcane spells, all without having to swap your class at one of the class trainers. 
+This mod has basically one feature: it reworks The Nameless One's progression to work as a multiclass Fighter/Mage/Thief. He can wield any weapon, use thief skills, and cast arcane spells, all without having to swap his class at one of the class trainers. 
 
 ## Implementation
 The Nameless One begins the game as a level 0/0/0 Fighter/Mage/Thief. You will need to level him up immediately upon the game starting in order to get his proper thief skills, mage spell slots, and hit points.  
 
-Weapon proficiency points work identically to how they work in the vanilla game (although I have extended the progression up to level 30, which is almost certainly overkill). The UI showing how many unspent points you have is slightly different and is moved to the bottom of your Proficiencies section. 
+**Weapon Proficiencies**: Weapon proficiency points work identically to how they work in the vanilla game (although I have extended the progression up to level 30, which is almost certainly overkill). The UI showing how many unspent points you have is slightly different and is moved to the bottom of your Proficiencies section. 
 
-Character points from level advancement and specialization are handled via an item (the Manual of the Planes, better name pending) which will be waiting patiently in your inventory at the start of the game. Much like in vanilla Planescape, you get one character point whenever you reach a new maximum level, and you unlock option to select your first and second specializations at 7th and 12th level.
+**Character Progression**: Character points from level advancement and specialization are handled via an item (the Manual of the Planes, better name pending) which will be waiting patiently in your inventory at the start of the game. Much like in vanilla Planescape, you get one character point whenever you reach a new maximum level, and you unlock option to select your first and second specializations at 7th and 12th level.
 
-In order to allow the Nameless One to use his thief skills, I have made a small UI patch that changes the Dialog button to pull up a Thief hotbar, which gives access to the Talk, Detect Traps, Thievery, and Stealth buttons. These will all behave exactly as you'd expect. Annah is also affected by this change. 
+**Thieving**: In order to allow the Nameless One to use his thief skills, I have made a small UI patch that changes the Dialog button to pull up a Thief hotbar, which gives access to the Talk, Detect Traps, Thievery, and Stealth buttons. These will all behave exactly as you'd expect. Annah is also affected by this change. 
+
+**Learning Spells**: Although the Nameless One will begin the game with spell slots and the ability to gain XP in the Mage class, he will still need to be trained in how to read magic before he can scribe or use scrolls. I felt this was a narratively important enough quest to not render obsolete. (I have not placed such a restriction on Thief skills, although it could be trivially implemented.)
 
 The item flag for "unusable by Fighter/Mage/Thief" overlaps with the item flag for "unusable by Indeps". As the Nameless One is not able to become an Indep, I have simply changed all items that are unusable by Indeps to be unusable by Annah instead. This should have no effect on gameplay. I have made no other changes to item usability. 
-
-Although the Nameless One will begin the game with spell slots and the ability to gain XP in the Mage class, he will still need to be trained in how to read magic before he can scribe or use scrolls. I felt this was a narratively important enough quest to not render obsolete. (I have not placed such a restriction on Thief skills, although it could be trivially implemented.)
 
 In order to avoid getting bogged down with dialog and script patches, I have done a pass over scripts and dialogs to have class checks on the F/M/T Nameless One all evaluate to True (more specifically, instead of checking for Fighter, it now checks for Fighter_All, etc.) and I have also removed all instances of the effect that changes the Nameless One's class during dialog. Some dialogs (such as Porphiron's initial training dialog and Many-as-One's Kyton dream) might be a bit odd as a result, but nothing should catastrophically break and this mod should be able to handle other mod-added dialog as a result. 
 
