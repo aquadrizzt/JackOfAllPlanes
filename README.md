@@ -22,7 +22,10 @@ This mod lays a lot of groundwork that could easily be adapted to allow other cl
 
 Although I wound up not using this functionality in this mod, I have also changed the Special Abilities button to no longer be hardcoded. This would allow you to give the Nameless One and his companions new abilities beyond the handful of vanilla ones (Morte's Litany and Skull Mob, TNO's Raise Dead and optional Sensory Touch, Grace's Kiss and Sensory Touch). 
 
+This mod might interact a bit strangely with Items of the Planes (which should be installed before this mod). The flattening of weapon proficiencies might result in some weapons having incorrect behavior when it comes to whether they can backstab or not. 
+
 I am quite positive there is a cleaner way to implement all of the UI changes I've done here. I suspect it might even be possible to restore the character point level up menu for the Nameless One. I am unfortunately not experienced enough at LUA to know how to do this properly, but if you are and want to help shoot me a message. 
+
 
 ## Credits 
 This mod was put together in response to a few questions from MephistoSatanDevil (on the Beamdog forums) about the feasibility of making The Nameless One a Fighter/Mage/Thief. 
