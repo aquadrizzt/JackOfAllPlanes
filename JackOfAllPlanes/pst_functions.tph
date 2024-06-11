@@ -1,0 +1,161 @@
+DEFINE_PATCH_FUNCTION ~ADD_CRE_EFFECT_PST~
+  INT_VAR opcode = 0
+          target = 0
+          timing = 0
+          parameter1 = 0
+          parameter2 = 0
+          power = 0
+          resist_dispel = 0
+          duration = 0
+          probability1 = 100
+          probability2 = 0
+          dicenumber = 0
+          dicesize = 0
+          savingthrow = 0
+          savebonus = 0
+          header = 0
+          parameter3 = 0
+          parameter4 = 0
+          school = 0
+          special = 0
+          ___#special = special
+          lowestafflvl = 0
+          highestafflvl = 0
+          casterx = 0 - 1
+          castery = 0 - 1
+          targetx = 0 - 1
+          targety = 0 - 1
+          restype = 0
+          sourceslot = "-1"
+          casterlvl = 0
+          sectype = 0
+          insert_point = 0
+  STR_VAR resource = ~~
+          resource2 = ~~
+          vvcresource = ~~
+          effsource = ~~
+          effvar = ~~
+BEGIN
+  LAUNCH_PATCH_MACRO ~ADD_CRE_EFFECT_PST~
+END
+
+DEFINE_PATCH_MACRO ~ADD_CRE_EFFECT_PST~ BEGIN
+  
+  LAUNCH_PATCH_FUNCTION ~FJ_CRE_VALIDITY~ RET valid = valid END
+  READ_ASCII 0 __#signature
+  READ_BYTE 0x33 __#effVersion
+  PATCH_IF ~%__#signature%~ STRING_COMPARE_CASE ~CRE V1.0~ THEN BEGIN
+    INNER_ACTION BEGIN
+      FAIL ~%__#signature% not supported in ADD_CRE_EFFECT_BG2~
+    END
+  END
+  PATCH_IF __#effVersion != 1 BEGIN
+    INNER_ACTION BEGIN
+      FAIL ~ADD_CRE_EFFECT_BG2 and EFF version is %__#effVersion%~
+    END
+  END
+
+  PATCH_IF !VARIABLE_IS_SET restype BEGIN
+    SET restype = 0
+  END
+  PATCH_IF !VARIABLE_IS_SET sourceslot BEGIN
+    SET sourceslot = "-1"
+  END
+
+  READ_LONG 0x2c4 ___#fx_off
+  READ_LONG 0x2c8 ___#fx_num
+
+  /* If insert_point is greater than or equal to 0 and less than num_fx, use it as a value
+   * Otherwise, insert at num_fx
+   * The function should use 0 as its default value
+   */
+  ___#insert_point = IS_AN_INT insert_point AND
+                     insert_point >= 0 AND
+                     insert_point < ___#fx_num ?
+                     insert_point : ___#fx_num
+
+  INSERT_BYTES ___#fx_off + ___#insert_point * 0x108 0x108
+
+//    WRITE_ASCII ___#fx_off + ___#insert_point * 0x108 ~EFF ~ #4
+//    WRITE_ASCII (___#fx_off + ___#insert_point * 0x108 + 4) ~V2.0~ #4
+
+  WRITE_LONG (___#fx_off + ___#insert_point * 0x108 + 0x8) opcode
+  WRITE_LONG (___#fx_off + ___#insert_point * 0x108 + 0xc) target
+  WRITE_LONG (___#fx_off + ___#insert_point * 0x108 + 0x10) power
+  WRITE_LONG (___#fx_off + ___#insert_point * 0x108 + 0x14) parameter1
+  WRITE_LONG (___#fx_off + ___#insert_point * 0x108 + 0x18) parameter2
+  WRITE_BYTE (___#fx_off + ___#insert_point * 0x108 + 0x1c) timing
+  WRITE_LONG (___#fx_off + ___#insert_point * 0x108 + 0x20) duration
+  WRITE_SHORT (___#fx_off + ___#insert_point * 0x108 + 0x24) probability1
+  WRITE_SHORT (___#fx_off + ___#insert_point * 0x108 + 0x26) probability2
+  WRITE_EVALUATED_ASCII (___#fx_off + ___#insert_point * 0x108 + 0x28) ~%resource%~ #8
+  WRITE_LONG (___#fx_off + ___#insert_point * 0x108 + 0x30) dicenumber
+  WRITE_LONG (___#fx_off + ___#insert_point * 0x108 + 0x34) dicesize
+  WRITE_LONG (___#fx_off + ___#insert_point * 0x108 + 0x38) savingthrow
+  WRITE_LONG (___#fx_off + ___#insert_point * 0x108 + 0x3c) savebonus
+  PATCH_IF IS_AN_INT ___#special BEGIN
+    WRITE_LONG (___#fx_off + ___#insert_point * 0x108 + 0x40) ___#special
+  END
+  WRITE_LONG (___#fx_off + ___#insert_point * 0x108 + 0x44) school
+  WRITE_LONG (___#fx_off + ___#insert_point * 0x108 + 0x4c) lowestafflvl
+  WRITE_LONG (___#fx_off + ___#insert_point * 0x108 + 0x50) highestafflvl
+  WRITE_LONG (___#fx_off + ___#insert_point * 0x108 + 0x54) resist_dispel
+  WRITE_LONG (___#fx_off + ___#insert_point * 0x108 + 0x58) parameter3
+  WRITE_LONG (___#fx_off + ___#insert_point * 0x108 + 0x5c) parameter4
+  WRITE_EVALUATED_ASCII (___#fx_off + ___#insert_point * 0x108 + 0x68) ~%vvcresource%~ #8
+  WRITE_EVALUATED_ASCII (___#fx_off + ___#insert_point * 0x108 + 0x70) ~%resource2%~ #8
+  WRITE_LONG (___#fx_off + ___#insert_point * 0x108 + 0x78) casterx
+  WRITE_LONG (___#fx_off + ___#insert_point * 0x108 + 0x7c) castery
+  WRITE_LONG (___#fx_off + ___#insert_point * 0x108 + 0x80) targetx
+  WRITE_LONG (___#fx_off + ___#insert_point * 0x108 + 0x84) targety
+  WRITE_LONG  ___#fx_off + ___#insert_point * 0x108 + 0x88  restype
+  WRITE_EVALUATED_ASCII (___#fx_off + ___#insert_point * 0x108 + 0x8c) ~%effsource%~ #8
+  WRITE_LONG  ___#fx_off + ___#insert_point * 0x108 + 0x9c  sourceslot
+  WRITE_EVALUATED_ASCII (___#fx_off + ___#insert_point * 0x108 + 0xa0) ~%effvar%~ #32
+  WRITE_LONG (___#fx_off + ___#insert_point * 0x108 + 0xc0) casterlvl
+  WRITE_LONG (___#fx_off + ___#insert_point * 0x108 + 0xc8) sectype
+
+  //correcting effects number
+  WRITE_LONG 0x2c8 (___#fx_num + 1)
+
+  //correcting offsets
+  PATCH_FOR_EACH ___#offset IN 0x2b8 0x2bc BEGIN //item num and islot
+    READ_LONG ___#offset ___#current_off
+    WRITE_LONG ___#offset (___#current_off + 0x108)
+  END
+
+  //reset vars
+  SET opcode = 0
+  SET target = 0
+  SET timing = 0
+  SET power = 0
+  SET parameter1 = 0
+  SET parameter2 = 0
+  SET timing = 0
+  SET resist_dispel = 0
+  SET duration = 0
+  SET probability1 = 100
+  SET probability2 = 0
+  SPRINT resource ~%___#nil%~
+  SET dicenumber = 0
+  SET dicesize = 0
+  SET savingthrow = 0
+  SET savebonus = 0
+  SET school = 0
+  SET lowestafflvl = 0
+  SET highestafflvl = 0
+  SET parameter3 = 0
+  SET parameter4 = 0
+  SPRINT vvcresource ~%___#nil%~
+  SPRINT resource2 ~%___#nil%~
+  SET casterx = 0 - 1
+  SET castery = 0 - 1
+  SET targetx = 0 - 1
+  SET targety = 0 - 1
+  SET restype = 0
+  SPRINT effsource ~%___#nil%~
+  SET sourceslot = "-1"
+  SPRINT effvar ~%___#nil%~
+  SET casterlvl = 0
+  SET sectype = 0
+END

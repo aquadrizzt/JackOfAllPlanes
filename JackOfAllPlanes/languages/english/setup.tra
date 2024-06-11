@@ -1,0 +1,94 @@
+@0 = ~Jack Of All Planes~ 
+@1 = ~Requires PST:EE.~
+
+@101 = ~fighter/mage/thief~
+@102 = ~Fighter/Mage/Thief~ 
+@103 = ~Unused~
+
+@104 = ~Manual of the Planes~
+@105 = ~MANUAL OF THE PLANES 
+Special: 
+	Allows allocation of character points 
+	Allows selection of specializations (at level 7 and 12)
+
+This mysterious tome was with you when you woke up in the Mortuary. 
+
+^NNOTE: You will gain one character point every time you achieve a new maximum level. These points can be spent to upgrade your ability scores. 
+
+When you first reach 7th level, you will unlock the ability to choose a specialization. Upon reaching 12th level, you will be able to improve your previous specialization further or augment it with a second specialization.^-
+~ 
+
+
+@1000 = ~What do you need?~
+@1001 = ~I would like to allocate unspent character points.~
+@1002 = ~I would like to choose my initial specialization.~
+@1003 = ~I would like to choose my second specialization.~
+@1004 = ~What specialization would you like?~
+@1005 = ~I want to specialize in combat.~
+@1006 = ~I want to specialize in trickery.~
+@1007 = ~I want to specialize in magic.~
+@1008 = ~Return to the main menu.~
+@1009 = ~The combat specialization offers the following benefits: 
+- +1 Strength
+- Ability to reach high mastery (++++) in any weapon. 
+
+Are you sure you want this specialization? This choice cannot be undone.~
+@1010 = ~Yes, I want to specialize in combat.~
+@1011 = ~No, let me review the other specializations.~
+@1012 = ~Yes, I want to augment my specialization with combat.~
+@1013 = ~The trickery specialization offers the following benefits: 
+- +1 Dexterity
+
+Are you sure you want this specialization? This choice cannot be undone.~
+@1014 = ~Yes, I want to specialize in trickery.~
+@1015 = ~Yes, I want to augment my specialization with trickery.~
+@1016 = ~The magic specialization offers the following benefits: 
+- +1 Intelligence
+
+Are you sure you want this specialization? This choice cannot be undone.~
+@1017 = ~Yes, I want to specialize in magic.~
+@1018 = ~Yes, I want to augment my specialization with magic.~
+@1019 = ~I want to further specialize in combat.~
+@1020 = ~I want to augment my combat specialization with trickery.~
+@1021 = ~I want to augment my combat specialization with magic.~
+@1022 = ~I want to further specialize in trickery.~
+@1023 = ~I want to augment my trickery specialization with combat.~
+@1024 = ~I want to augment my combat specialization with magic.~
+@1025 = ~I want to further specialize in magic.~
+@1026 = ~I want to augment my magic specialization with combat.~
+@1027 = ~I want to augment my magic specialization with trickery.~
+@1028 = ~The advanced combat specialization offers the following benefits: 
+- +1 Strength
+- +1 Constitution
+- +3 maximum Hit Points
+- Ability to reach grandmastery (+++++) in any weapon.
+
+Are you sure you want this specialization? This choice cannot be undone.~
+@1029 = ~The advanced trickery specialization offers the following benefits: 
+- +2 Dexterity
+- +1 Luck
+
+Are you sure you want this specialization? This choice cannot be undone.~
+@1030 = ~The advanced magic specialization offers the following benefits: 
+- +2 Intelligence
+- +1 Wisdom
+- +5 Lore
+
+Are you sure you want this specialization? This choice cannot be undone.~
+
+@1031 = ~What ability would you like to improve? (<QD_JOAP_POINTS> available)~
+@1032 = ~Strength~
+@1033 = ~Dexterity~
+@1034 = ~Constitution~
+@1035 = ~Intelligence~
+@1036 = ~Wisdom~
+@1037 = ~Charisma~
+@1038 = ~How many points would you like to allocate to Strength? (<QD_JOAP_POINTS> available)~
+@1039 = ~Go back.~
+@1040 = ~How many points would you like to allocate to Dexterity? (<QD_JOAP_POINTS> available)~ 
+@1041 = ~How many points would you like to allocate to Constitution? (<QD_JOAP_POINTS> available)~ 
+@1042 = ~How many points would you like to allocate to Intelligence? (<QD_JOAP_POINTS> available)~ 
+@1043 = ~How many points would you like to allocate to Wisdom? (<QD_JOAP_POINTS> available)~
+@1044 = ~How many points would you like to allocate to Charisma? (<QD_JOAP_POINTS> available)~ 
+@1045 = ~You have no character points to spend.~
+@1046 = ~Your abilities have improved.~ 

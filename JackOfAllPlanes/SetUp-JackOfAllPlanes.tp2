@@ -1,0 +1,153 @@
+BACKUP ~weidu_external/backup/JackOfAllPlanes~
+SUPPORT ~https://github.com/aquadrizzt/~
+VERSION ~0.01~
+
+
+LANGUAGE ~English~
+         ~english~
+         ~JackOfAllPlanes/languages/english/setup.tra~
+
+BEGIN @0
+REQUIRE_PREDICATE GAME_IS ~pstee~ @1
+
+INCLUDE ~JackOfAllPlanes/pst_functions.tph~ 
+
+
+// Changes the UI to facilitate a F/M/T main character
+// Sets TNO's initial class to F/M/T 
+// Changes the Special Ability bar to not be the hard-coded one 
+// Allows access to thief skills via a pop-up from the dialog button 
+// Potential improvements: only getting the thief skill icons rather than the entire thief hot bar 
+COPY_EXISTING ~ui.menu~ ~override~ 
+    REPLACE_TEXTUALLY ~createCharScreen:OnClassSelectButtonClick(2)~ ~createCharScreen:OnClassSelectButtonClick(10)~
+    REPLACE_TEXTUALLY ~showContextMenu(const.ACTIONBAR_STATE_SPECIAL_ABILITES)~ ~showContextMenu(106)~
+    REPLACE_TEXTUALLY ~clickable lua "pst:SpecialAbilitiesContextClickable() and fullActionbarClickable()"~ ~clickable lua "fullActionbarClickable()"~
+    REPLACE_TEXTUALLY ~Infinity_PopMenu('WORLD_CONTEXT_BAR')[%TAB%%LNL%%MNL%%WNL%]+if(game:GetIconIndex() == 18 and game:GetState() == 2) then[%TAB%%LNL%%MNL%%WNL%]+game:SetState(0)[%TAB%%LNL%%MNL%%WNL%]+game:SetIconIndex(0)[%TAB%%LNL%%MNL%%WNL%]+else[%TAB%%LNL%%MNL%%WNL%]+game:SetState(2)[%TAB%%LNL%%MNL%%WNL%]+game:SetIconIndex(18)[%TAB%%LNL%%MNL%%WNL%]+end~ ~actionbarResetState()
+            showContextMenu(4)~
+
+
+APPEND_COL ~THIEFSCL.2da~ ~$ $ FIGHTER_MAGE_THIEF 100 100 100 100 100 100 100 0~
+    UNLESS "[ %TAB%%WNL%]+FIGHTER_MAGE_THIEF[ %TAB%%WNL%]+"
+
+APPEND ~THIEFSKL.2da~ ~FIGHTER_MAGE_THIEF   0   20~ 
+    UNLESS "[ %TAB%%WNL%]+FIGHTER_MAGE_THIEF[ %TAB%%WNL%]+"
+
+// fix to a potential progress locking issue with thief level up
+// removes penalties to thief skills for low dexterity (should have no impact on gameplay)
+COPY ~JackOfAllPlanes/data/skilldex.2da~ ~override~ 
+
+OUTER_SET lower = RESOLVE_STR_REF(@101)
+OUTER_SET mixed = RESOLVE_STR_REF(@102)
+APPEND ~CLASTEXT.2da~ ~FIGHTER_MAGE_THIEF   10 16384 %lower% 0 %mixed% 0 0 0~  
+    UNLESS "[ %TAB%%WNL%]+FIGHTER_MAGE_THIEF[ %TAB%%WNL%]+"  
+
+// remove dual-class flags 
+// set base fighter level to 1 
+COPY_EXISTING ~charbase.cre~ ~override~ 
+    READ_BYTE 0x10 flags 
+    WRITE_BYTE 0x10 (flags BAND 0b00000011)
+    WRITE_BYTE 0x234 0  
+    WRITE_BYTE 0x235 0
+    WRITE_BYTE 0x236 0
+
+
+// untag Indep flag from all items 
+// TNO cannot become an Indep and flag collides with F/M/T usability
+// prevent Annah from using items that would ban Indeps 
+COPY_EXISTING_REGEXP GLOB ~.*.ITM~ ~override~
+    READ_SHORT 0x1c category 
+    READ_BYTE 0x20 flags_indep
+    WRITE_BYTE 0x20 (flags_indep BAND 0b11111110)
+    PATCH_IF (flags_indep BAND 0b00000001) BEGIN 
+        READ_BYTE 0x21 flags_annah
+        WRITE_BYTE 0x21 (flags_annah BOR 0b00010000)
+    END 
+    BUT_ONLY 
+
+// move all non-scroll notes to a separate category (set up for scribing check)
+APPEND ~itemtype.2da~ ~50         INT_12Q    INT_12Q1   -1           // scroll~
+    UNLESS "//note" 
+
+COPY_EXISTING_REGEXP GLOB ~.*.ITM~ ~override~
+    READ_SHORT 0x1c category 
+    PATCH_IF (category = 11) BEGIN 
+        READ_BYTE 0x18 flags_copy 
+        PATCH_IF (flags_copy BAND 0b00100000) BEGIN 
+            WRITE_SHORT 0x1c 50 //make a "note"
+        END 
+    END 
+    BUT_ONLY 
+
+// prevent scribing/using of scrolls until taught
+COPY_EXISTING ~charbase.cre~ ~override~ 
+    LPF ADD_CRE_EFFECT_PST  
+        INT_VAR  
+            opcode = 326
+            timing = 1 
+            target = 1 
+        STR_VAR 
+            resource = ~qd_scrl~  
+    END 
+
+COPY ~JackOfAllPlanes/data/qd_scrl.spl~ ~override~ //prevents use of all scrl tagged items 
+     ~JackOfAllPlanes/data/QDSCRL.spl~ ~override~ //removes and protects against qd_scrl.spl
+
+// awards proficiency points every three Fighter levels 
+// displays up to 7 unused proficiency points in proficiency window
+// dynamically updates to match current value 
+APPEND ~wprof.ids~ ~116 UNUSED~ 
+	UNLESS "[ %TAB%%WNL%]+UNUSED[ %TAB%%WNL%]+"
+
+OUTER_SET unused_name = RESOLVE_STR_REF(@103)
+APPEND ~weapprof.2da~ ~UNUSED 116 %unused_name% 0~ 
+    UNLESS "[ %TAB%%WNL%]+UNUSED[ %TAB%%WNL%]+"
+
+EXTEND_BOTTOM ~baldur.bcs~ ~JackOfAllPlanes/data/qd_joap_profs.baf~ 
+
+// handle specialization and attribute points through item dialog
+COPY ~JackOfAllPlanes/data/QDJOAP_.itm~ ~override~ //ability bonuses and specialization tome 
+    SAY NAME1 @104 
+    SAY NAME2 @104 
+    SAY UNIDENTIFIED_DESC @105 
+    SAY IDENTIFIED_DESC @105 
+
+OUTER_SET tomename = RESOLVE_STR_REF(@104)
+APPEND ~ITEMDIAL.2da~  ~QDJOAP_ 4251 QD_DJOAP %tomename%~ 
+    UNLESS "[ %TAB%%WNL%]+QDJOAP_[ %TAB%%WNL%]+" 
+
+COMPILE ~JackOfAllPlanes/data/QD_DJOAP.d~ 
+
+COPY_EXISTING ~charbase.cre~ ~override~ 
+    ADD_CRE_ITEM ~qdjoap_~ #0 #0 #0 ~undroppable~ ~inv1~
+
+// pretty printing
+COPY_EXISTING ~WEAPPROF.2da~ ~override~ 
+              ~CLASTEXT.2da~ ~override~
+              ~THIEFSKL.2da~ ~override~
+              ~THIEFSCL.2da~ ~override~
+              ~ITEMDIAL.2da~ ~override~
+              ~SKILLDEX.2da~ ~override~
+    PRETTY_PRINT_2DA
+
+
+// correcting class checks 
+// removes SetNamelessClass if I missed a check
+COPY_EXISTING_REGEXP GLOB ~.+\.dlg~ ~override~
+    DECOMPILE_AND_PATCH BEGIN
+        REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~Class(Protagonist,FIGHTER)~ ~Class(Protagonist,FIGHTER_ALL)~ 
+        REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~Class(Protagonist,MAGE)~ ~Class(Protagonist,MAGE_ALL)~ 
+        REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~Class(Protagonist,THIEF)~ ~Class(Protagonist,THIEF_ALL)~ 
+        REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SetGlobal("Mage_Training","GLOBAL",~ ~ApplySpellRES("QDSCRL",Protagonist) SetGlobal("Mage_Training","GLOBAL",~ 
+        REPLACE_TEXTUALLY CASE_INSENSITIVE  ~SetNamelessClass\(.*\)~ ~~ 
+    END 
+    BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~.+\.bcs~ ~override~
+    DECOMPILE_AND_PATCH BEGIN
+        REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~Class(Protagonist,FIGHTER)~ ~Class(Protagonist,FIGHTER_ALL)~ 
+        REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~Class(Protagonist,MAGE)~ ~Class(Protagonist,MAGE_ALL)~ 
+        REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~Class(Protagonist,THIEF)~ ~Class(Protagonist,THIEF_ALL)~ 
+        REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SetGlobal("Mage_Training","GLOBAL",~ ~ApplySpellRES("QDSCRL",Protagonist) SetGlobal("Mage_Training","GLOBAL",~ 
+        REPLACE_TEXTUALLY CASE_INSENSITIVE  ~SetNamelessClass\(.*\)~ ~~ 
+    END 
+    BUT_ONLY

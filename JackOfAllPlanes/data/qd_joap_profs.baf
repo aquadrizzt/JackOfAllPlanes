@@ -1,0 +1,570 @@
+IF
+	Global("QD_JOAP_INITIAL_PROFS","GLOBALS",0)
+THEN
+	RESPONSE #100
+		// IncrementProficiency(Protagonist,116,2)
+		IncrementExtraProficiency(Protagonist,-1)
+		SetGlobal("QD_JOAP_INITIAL_PROFS","GLOBALS",1)
+		Continue()
+END
+
+IF
+	ClassLevelGT(Protagonist,FIGHTER,2)
+	Global("QD_JOAP_PROF_3","GLOBALS",0)
+THEN
+	RESPONSE #100
+		IncrementExtraProficiency(Protagonist,1)
+		SetGlobal("QD_JOAP_PROF_3","GLOBALS",1)
+		Continue()
+END
+
+IF
+	ClassLevelGT(Protagonist,FIGHTER,5)
+	Global("QD_JOAP_PROF_6","GLOBALS",0)
+THEN
+	RESPONSE #100
+		IncrementExtraProficiency(Protagonist,1)
+		SetGlobal("QD_JOAP_PROF_6","GLOBALS",1)
+		Continue()
+END
+
+IF
+	ClassLevelGT(Protagonist,FIGHTER,8)
+	Global("QD_JOAP_PROF_9","GLOBALS",0)
+THEN
+	RESPONSE #100
+		IncrementExtraProficiency(Protagonist,1)
+		SetGlobal("QD_JOAP_PROF_9","GLOBALS",1)
+		Continue()
+END
+
+
+IF
+	ClassLevelGT(Protagonist,FIGHTER,11)
+	Global("QD_JOAP_PROF_12","GLOBALS",0)
+THEN
+	RESPONSE #100
+		IncrementExtraProficiency(Protagonist,1)
+		SetGlobal("QD_JOAP_PROF_12","GLOBALS",1)
+		Continue()
+END
+
+IF
+	ClassLevelGT(Protagonist,FIGHTER,14)
+	Global("QD_JOAP_PROF_15","GLOBALS",0)
+THEN
+	RESPONSE #100
+		IncrementExtraProficiency(Protagonist,1)
+		SetGlobal("QD_JOAP_PROF_15","GLOBALS",1)
+		Continue()
+END
+
+IF
+	ClassLevelGT(Protagonist,FIGHTER,17)
+	Global("QD_JOAP_PROF_18","GLOBALS",0)
+THEN
+	RESPONSE #100
+		IncrementExtraProficiency(Protagonist,1)
+		SetGlobal("QD_JOAP_PROF_18","GLOBALS",1)
+		Continue()
+END
+
+IF
+	ClassLevelGT(Protagonist,FIGHTER,20)
+	Global("QD_JOAP_PROF_21","GLOBALS",0)
+THEN
+	RESPONSE #100
+		IncrementExtraProficiency(Protagonist,1)
+		SetGlobal("QD_JOAP_PROF_21","GLOBALS",1)
+		Continue()
+END
+
+IF
+	ClassLevelGT(Protagonist,FIGHTER,23)
+	Global("QD_JOAP_PROF_24","GLOBALS",0)
+THEN
+	RESPONSE #100
+		IncrementExtraProficiency(Protagonist,1)
+		SetGlobal("QD_JOAP_PROF_24","GLOBALS",1)
+		Continue()
+END
+
+IF
+	ClassLevelGT(Protagonist,FIGHTER,26)
+	Global("QD_JOAP_PROF_27","GLOBALS",0)
+THEN
+	RESPONSE #100
+		IncrementExtraProficiency(Protagonist,1)
+		SetGlobal("QD_JOAP_PROF_27","GLOBALS",1)
+		Continue()
+END
+
+IF
+	ClassLevelGT(Protagonist,FIGHTER,29)
+	Global("QD_JOAP_PROF_30","GLOBALS",0)
+THEN
+	RESPONSE #100
+		IncrementExtraProficiency(Protagonist,1)
+		SetGlobal("QD_JOAP_PROF_30","GLOBALS",1)
+		Continue()
+END
+
+IF
+	ExtraProficiency(Protagonist,0)
+	ProficiencyGT(Protagonist,116,0)
+THEN
+	RESPONSE #100
+		IncrementProficiency(Protagonist,116,-1)
+		Continue()
+END
+
+IF
+	ExtraProficiency(Protagonist,1)
+	ProficiencyGT(Protagonist,116,1)
+THEN
+	RESPONSE #100
+		IncrementProficiency(Protagonist,116,-1)
+		Continue()
+END
+
+IF
+	ExtraProficiency(Protagonist,1)
+	ProficiencyLT(Protagonist,116,1)
+THEN
+	RESPONSE #100
+		IncrementProficiency(Protagonist,116,1)
+		Continue()
+END
+
+
+
+IF
+	ExtraProficiency(Protagonist,2)
+	ProficiencyGT(Protagonist,116,2)
+THEN
+	RESPONSE #100
+		IncrementProficiency(Protagonist,116,-1)
+		Continue()
+END
+
+IF
+	ExtraProficiency(Protagonist,2)
+	ProficiencyLT(Protagonist,116,2)
+THEN
+	RESPONSE #100
+		IncrementProficiency(Protagonist,116,1)
+		Continue()
+END
+
+IF
+	ExtraProficiency(Protagonist,3)
+	ProficiencyGT(Protagonist,116,3)
+THEN
+	RESPONSE #100
+		IncrementProficiency(Protagonist,116,-1)
+		Continue()
+END
+
+IF
+	ExtraProficiency(Protagonist,3)
+	ProficiencyLT(Protagonist,116,3)
+THEN
+	RESPONSE #100
+		IncrementProficiency(Protagonist,116,1)
+		Continue()
+END
+
+
+IF
+	ExtraProficiency(Protagonist,4)
+	ProficiencyGT(Protagonist,116,4)
+THEN
+	RESPONSE #100
+		IncrementProficiency(Protagonist,116,-1)
+		Continue()
+END
+
+IF
+	ExtraProficiency(Protagonist,4)
+	ProficiencyLT(Protagonist,116,4)
+THEN
+	RESPONSE #100
+		IncrementProficiency(Protagonist,116,1)
+		Continue()
+END
+
+
+IF
+	ExtraProficiency(Protagonist,5)
+	ProficiencyGT(Protagonist,116,5)
+THEN
+	RESPONSE #100
+		IncrementProficiency(Protagonist,116,-1)
+		Continue()
+END
+
+IF
+	ExtraProficiency(Protagonist,5)
+	ProficiencyLT(Protagonist,116,5)
+THEN
+	RESPONSE #100
+		IncrementProficiency(Protagonist,116,1)
+		Continue()
+END
+
+
+IF
+	ExtraProficiency(Protagonist,6)
+	ProficiencyGT(Protagonist,116,6)
+THEN
+	RESPONSE #100
+		IncrementProficiency(Protagonist,116,-1)
+		Continue()
+END
+
+IF
+	ExtraProficiency(Protagonist,6)
+	ProficiencyLT(Protagonist,116,6)
+THEN
+	RESPONSE #100
+		IncrementProficiency(Protagonist,116,1)
+		Continue()
+END
+
+IF
+	ExtraProficiencyGT(Protagonist,6)
+	ProficiencyLT(Protagonist,116,7)
+THEN
+	RESPONSE #100
+		IncrementProficiency(Protagonist,116,1)
+		Continue()
+END
+
+IF
+	Global("QD_JOAP_ABIL_2","GLOBALS",0)
+	LevelGT(Protagonist,1)
+THEN
+	RESPONSE #100
+		IncrementGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL",1)
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		SetGlobal("QD_JOAP_ABIL_2","GLOBALS",1)
+		Continue()
+END
+
+IF
+	Global("QD_JOAP_ABIL_3","GLOBALS",0)
+	LevelGT(Protagonist,2)
+THEN
+	RESPONSE #100
+		IncrementGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL",1)
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		SetGlobal("QD_JOAP_ABIL_3","GLOBALS",1)
+		Continue()
+END
+
+
+IF
+	Global("QD_JOAP_ABIL_4","GLOBALS",0)
+	LevelGT(Protagonist,3)
+THEN
+	RESPONSE #100
+		IncrementGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL",1)
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		SetGlobal("QD_JOAP_ABIL_4","GLOBALS",1)
+		Continue()
+END
+
+
+IF
+	Global("QD_JOAP_ABIL_5","GLOBALS",0)
+	LevelGT(Protagonist,4)
+THEN
+	RESPONSE #100
+		IncrementGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL",1)
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		SetGlobal("QD_JOAP_ABIL_5","GLOBALS",1)
+		Continue()
+END
+
+IF
+	Global("QD_JOAP_ABIL_6","GLOBALS",0)
+	LevelGT(Protagonist,5)
+THEN
+	RESPONSE #100
+		IncrementGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL",1)
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		SetGlobal("QD_JOAP_ABIL_6","GLOBALS",1)
+		Continue()
+END
+
+IF
+	Global("QD_JOAP_ABIL_7","GLOBALS",0)
+	LevelGT(Protagonist,6)
+THEN
+	RESPONSE #100
+		IncrementGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL",1)
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		SetGlobal("QD_JOAP_ABIL_7","GLOBALS",1)
+		Continue()
+END
+
+IF
+	Global("QD_JOAP_ABIL_8","GLOBALS",0)
+	LevelGT(Protagonist,7)
+THEN
+	RESPONSE #100
+		IncrementGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL",1)
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		SetGlobal("QD_JOAP_ABIL_8","GLOBALS",1)
+		Continue()
+END
+
+IF
+	Global("QD_JOAP_ABIL_9","GLOBALS",0)
+	LevelGT(Protagonist,8)
+THEN
+	RESPONSE #100
+		IncrementGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL",1)
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		SetGlobal("QD_JOAP_ABIL_9","GLOBALS",1)
+		Continue()
+END
+
+IF
+	Global("QD_JOAP_ABIL_10","GLOBALS",0)
+	LevelGT(Protagonist,9)
+THEN
+	RESPONSE #100
+		IncrementGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL",1)
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		SetGlobal("QD_JOAP_ABIL_10","GLOBALS",1)
+		Continue()
+END
+
+IF
+	Global("QD_JOAP_ABIL_11","GLOBALS",0)
+	LevelGT(Protagonist,10)
+THEN
+	RESPONSE #100
+		IncrementGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL",1)
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		SetGlobal("QD_JOAP_ABIL_11","GLOBALS",1)
+		Continue()
+END
+
+IF
+	Global("QD_JOAP_ABIL_12","GLOBALS",0)
+	LevelGT(Protagonist,11)
+THEN
+	RESPONSE #100
+		IncrementGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL",1)
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		SetGlobal("QD_JOAP_ABIL_12","GLOBALS",1)
+		Continue()
+END
+
+IF
+	Global("QD_JOAP_ABIL_13","GLOBALS",0)
+	LevelGT(Protagonist,12)
+THEN
+	RESPONSE #100
+		IncrementGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL",1)
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		SetGlobal("QD_JOAP_ABIL_13","GLOBALS",1)
+		Continue()
+END
+
+IF
+	Global("QD_JOAP_ABIL_14","GLOBALS",0)
+	LevelGT(Protagonist,13)
+THEN
+	RESPONSE #100
+		IncrementGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL",1)
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		SetGlobal("QD_JOAP_ABIL_14","GLOBALS",1)
+		Continue()
+END
+
+IF
+	Global("QD_JOAP_ABIL_15","GLOBALS",0)
+	LevelGT(Protagonist,14)
+THEN
+	RESPONSE #100
+		IncrementGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL",1)
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		SetGlobal("QD_JOAP_ABIL_15","GLOBALS",1)
+		Continue()
+END
+
+IF
+	Global("QD_JOAP_ABIL_16","GLOBALS",0)
+	LevelGT(Protagonist,15)
+THEN
+	RESPONSE #100
+		IncrementGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL",1)
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		SetGlobal("QD_JOAP_ABIL_16","GLOBALS",1)
+		Continue()
+END
+
+IF
+	Global("QD_JOAP_ABIL_17","GLOBALS",0)
+	LevelGT(Protagonist,16)
+THEN
+	RESPONSE #100
+		IncrementGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL",1)
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		SetGlobal("QD_JOAP_ABIL_17","GLOBALS",1)
+		Continue()
+END
+
+IF
+	Global("QD_JOAP_ABIL_18","GLOBALS",0)
+	LevelGT(Protagonist,17)
+THEN
+	RESPONSE #100
+		IncrementGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL",1)
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		SetGlobal("QD_JOAP_ABIL_18","GLOBALS",1)
+		Continue()
+END
+
+IF
+	Global("QD_JOAP_ABIL_19","GLOBALS",0)
+	LevelGT(Protagonist,18)
+THEN
+	RESPONSE #100
+		IncrementGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL",1)
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		SetGlobal("QD_JOAP_ABIL_19","GLOBALS",1)
+		Continue()
+END
+
+IF
+	Global("QD_JOAP_ABIL_20","GLOBALS",0)
+	LevelGT(Protagonist,19)
+THEN
+	RESPONSE #100
+		IncrementGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL",1)
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		SetGlobal("QD_JOAP_ABIL_20","GLOBALS",1)
+		Continue()
+END
+
+IF
+	Global("QD_JOAP_ABIL_21","GLOBALS",0)
+	LevelGT(Protagonist,20)
+THEN
+	RESPONSE #100
+		IncrementGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL",1)
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		SetGlobal("QD_JOAP_ABIL_21","GLOBALS",1)
+		Continue()
+END
+
+IF
+	Global("QD_JOAP_ABIL_22","GLOBALS",0)
+	LevelGT(Protagonist,21)
+THEN
+	RESPONSE #100
+		IncrementGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL",1)
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		SetGlobal("QD_JOAP_ABIL_22","GLOBALS",1)
+		Continue()
+END
+
+IF
+	Global("QD_JOAP_ABIL_23","GLOBALS",0)
+	LevelGT(Protagonist,22)
+THEN
+	RESPONSE #100
+		IncrementGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL",1)
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		SetGlobal("QD_JOAP_ABIL_23","GLOBALS",1)
+		Continue()
+END
+
+IF
+	Global("QD_JOAP_ABIL_24","GLOBALS",0)
+	LevelGT(Protagonist,23)
+THEN
+	RESPONSE #100
+		IncrementGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL",1)
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		SetGlobal("QD_JOAP_ABIL_24","GLOBALS",1)
+		Continue()
+END
+
+IF
+	Global("QD_JOAP_ABIL_25","GLOBALS",0)
+	LevelGT(Protagonist,24)
+THEN
+	RESPONSE #100
+		IncrementGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL",1)
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		SetGlobal("QD_JOAP_ABIL_25","GLOBALS",1)
+		Continue()
+END
+
+IF
+	Global("QD_JOAP_ABIL_26","GLOBALS",0)
+	LevelGT(Protagonist,25)
+THEN
+	RESPONSE #100
+		IncrementGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL",1)
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		SetGlobal("QD_JOAP_ABIL_26","GLOBALS",1)
+		Continue()
+END
+
+IF
+	Global("QD_JOAP_ABIL_27","GLOBALS",0)
+	LevelGT(Protagonist,26)
+THEN
+	RESPONSE #100
+		IncrementGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL",1)
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		SetGlobal("QD_JOAP_ABIL_27","GLOBALS",1)
+		Continue()
+END
+
+IF
+	Global("QD_JOAP_ABIL_28","GLOBALS",0)
+	LevelGT(Protagonist,27)
+THEN
+	RESPONSE #100
+		IncrementGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL",1)
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		SetGlobal("QD_JOAP_ABIL_28","GLOBALS",1)
+		Continue()
+END
+
+IF
+	Global("QD_JOAP_ABIL_29","GLOBALS",0)
+	LevelGT(Protagonist,28)
+THEN
+	RESPONSE #100
+		IncrementGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL",1)
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		SetGlobal("QD_JOAP_ABIL_29","GLOBALS",1)
+		Continue()
+END
+
+IF
+	Global("QD_JOAP_ABIL_30","GLOBALS",0)
+	LevelGT(Protagonist,29)
+THEN
+	RESPONSE #100
+		IncrementGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL",1)
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		SetGlobal("QD_JOAP_ABIL_30","GLOBALS",1)
+		Continue()
+END
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		SetTokenGlobal("QD_JOAP_CHARACTER_POINTS","GLOBAL","QD_JOAP_POINTS")
+		Continue()
+END
