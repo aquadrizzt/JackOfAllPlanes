@@ -92,3 +92,4 @@ Are you sure you want this specialization? This choice cannot be undone.~
 @1044 = ~How many points would you like to allocate to Charisma? (<QD_JOAP_POINTS> available)~ 
 @1045 = ~You have no character points to spend.~
 @1046 = ~Your abilities have improved.~ 
+@1047 = ~Nothing.~
