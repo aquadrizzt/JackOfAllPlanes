@@ -6,7 +6,7 @@ BEGIN QD_DJOAP
 		+ ~Global("QD_JOAP_CHARACTER_POINTS","GLOBAL",0)~ + @1001 + no_character_points
 		+ ~Global("Specialist","GLOBAL",0) LevelGT(Protagonist,6)~ + @1002 + specialization1
 		+ ~GlobalGT("Specialist","GLOBAL",0) Global("QD_JOAP_SECOND_SPECIALIZATION","GLOBAL",0) LevelGT(Protagonist,11)~ + @1003 + specialization2
-		++ ~Nothing.~ EXIT  
+		++ @1047 EXIT  
 	END  
 
 	IF ~~ THEN BEGIN specialization1 
