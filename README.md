@@ -2,7 +2,7 @@ Jack of All Planes (JoAP) is a mod for Planescape: Torment - Enhanced Edition.
 
 This mod has basically one feature: it reworks The Nameless One's progression to work as a multiclass Fighter/Mage/Thief. He can wield any weapon, use thief skills, and cast arcane spells, all without having to swap his class at one of the class trainers. 
 
-Languages: English, Simplified Chinese (thanks to @MephistoSatanDevil) 
+**Languages**: English, Simplified Chinese (thanks to @MephistoSatanDevil) 
 
 ## Implementation
 The Nameless One begins the game as a level 0/0/0 Fighter/Mage/Thief. You will need to level him up immediately upon the game starting in order to get his proper thief skills, mage spell slots, and hit points.  
